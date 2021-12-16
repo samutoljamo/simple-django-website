@@ -1,0 +1,13 @@
+{% extends 'social/base.html' %}
+{% block content %}
+<h1>{{user.username}}</h1>
+
+{% if user.posts.all %}
+<h2>Posts:</h2>
+<ul class="list">
+{% for post in user.posts.all %}
+<li><a href="{{post.get_absolute_url}}">{{post.title}}</a><sub class="info">  at {{post.timestamp}}</sub></li>
+{% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

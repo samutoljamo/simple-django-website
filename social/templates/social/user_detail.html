@@ -1,0 +1,12 @@
+{% extends 'social/base.html' %}
+{% block content %}
+<h1>{{detail_user.username}}</h1>
+{% if detail_user.posts.exists %}
+<h2>Posts:</h2>
+{% for post in detail_user.posts.all %}
+<a href="{{post.get_absolute_url}}">{{post.title}}</a> <br>
+{% endfor %}
+{% else %}
+<h3>No posts</h3>
+{% endif %}
+{% endblock %}

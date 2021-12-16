@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Social website{% endblock %}</title>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/autosize.min.js"></script>
+</head>
+<body>
+
+	<script type="text/javascript">
+		$(window).on('load', function(){
+			autosize($('textarea.resize'));
+		});
+	</script>
+	<nav>
+		<a href="{% url 'profile' %}"style="padding: 10px;">Profile</a>
+		<a href="{% url 'user_list' %}" style="padding: 10px;">Users</a>
+		<a href="{% url 'create_post' %}" style="padding: 10px;">Create a new post</a>
+		<a href="{% url 'logout' %}" style="float: right;">Logout</a>
+	</nav>
+	<div class="container">
+		{% block content %}
+		{% endblock %}
+	</div>
+
+</body>
+</html>

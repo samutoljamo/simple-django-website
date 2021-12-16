@@ -1,0 +1,16 @@
+import threading
+
+class EmailThread(threading.Thread):
+
+    def __init__(self, email):
+        self.email = email
+        threading.Thread.__init__(self)
+
+    def run(self):
+        self.email.send()
+
+
+def send_email(email):
+    EmailThread(email).start()
+
+

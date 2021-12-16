@@ -1,0 +1,46 @@
+{% extends 'social/base.html' %}
+
+
+{% block content %}
+	<script type="text/javascript">
+			function commentButtonHandler(){
+				var element = document.getElementsByClassName('popup-form')[0]
+			if(window.getComputedStyle(element).getPropertyValue("display") === 'none'){
+				document.getElementsByClassName('popup-form')[0].style.display = 'initial';
+				document.getElementById('add_comment').style.display = 'none';
+			}else{
+				document.getElementsByClassName('popup-form')[0].style.display = 'none';
+				document.getElementById('add_comment').style.display = 'initial';
+		}
+		
+	}
+	</script>
+		<h1 class="title">{{post.title}}</h1>
+		<h3 class="user">Author: <a href="{{ post.author.get_absolute_url }}">{{post.author.username}}</a></h3>
+		<div id="body">
+			<p>{{post.body | linebreaks}}</p>
+		</div>
+		<button class="button" id="add_comment" onclick="commentButtonHandler()">Add a comment</button>
+		<div class="popup-form" style="display: none;">
+			<form method="post" class="popup-form-form">
+			    {% csrf_token %}
+			    {{ comment_form }}
+			    <div class="form-buttons">
+				    <button class="button" type="button" id="close" onclick="commentButtonHandler()">Close</button>
+				    <button type="submit" id="post-comment" class="button">Post comment</button>
+			    </div>
+			</form>
+		</div>
+		<div>
+			{% if comments %}
+				<h2>Comments:</h2>
+				<ul class="list">
+				{% for comment in comments %}
+					<li><a href="{{ comment.author.get_absolute_url }}">{{comment.author.username}}</a><sub class="info"> at {{comment.timestamp}}</sub>: {{comment.body}}</li>
+				{% endfor %}
+				</ul>
+			{% else %}
+				<p>No comments</p>
+			{% endif %}
+		</div>
+{% endblock %}

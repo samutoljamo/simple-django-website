@@ -1,0 +1,12 @@
+{% extends 'social/base.html' %}
+{% block content %}
+<h2>Users:</h2>
+{% for user_ in users %}
+{% ifequal user user_ %}
+<p><a href="{% url "profile" %}">{{user_.username}} </a>(you)</p>
+{% else %}
+<p><a href="{{user_.get_absolute_url}}">{{user_.username}}</a></p>
+{% endifequal %}
+{% endfor %}
+
+{% endblock %}
