@@ -9,7 +9,7 @@ It is a very simple social media site which allows you to:
 UI is minimal, it doesn't have any css-styling and pages are not responsive
 
 ## Installation/usage
-install Django `pip install django`\
+install Django v3.2 `pip install django==3.2`\
 clone rep `git clone https://github.com/samutoljamo/simple-django-website.git && cd simple-django-website`\
 run the development server `python manage.py runserver`\
 Go to `http://127.0.0.1:8000/` on a browser\
